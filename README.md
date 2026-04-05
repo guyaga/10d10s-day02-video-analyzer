@@ -52,8 +52,8 @@ Before you start, make sure you have:
 
 - [ ] **Claude Code** installed (Pro or Max subscription)
 - [ ] **Node.js 20+** installed on your computer
-- [ ] A **Google AI Studio** account (free)
-- [ ] A **Gemini API Key** (free tier available)
+- [ ] A **Google AI Studio** account
+- [ ] A **Gemini API Key** (pay-as-you-go pricing)
 
 > **Same API key as Day 1!** If you already have a GEMINI_API_KEY from the Image Generation lesson, you're good — it works for video analysis too.
 
@@ -67,7 +67,7 @@ If you already did this in Day 1, skip to Step 2.
 2. Click **"Create API Key"**
 3. Copy your API key
 
-> **Free tier is enough** for learning. No payment required.
+> **Pay-as-you-go pricing.** Set up a [Google Cloud billing profile](https://console.cloud.google.com/billing). Gemini 3.1 Pro costs ~$2-4 per 1M input tokens. Start with **$5-10 in credits** — that's plenty for learning.
 
 ---
 
@@ -207,7 +207,7 @@ Claude Code picks the right method for you — you don't need to think about it.
 | "API key not found" | Set `GEMINI_API_KEY` in your terminal (see Step 2) |
 | "File too large" | The skill uses File API automatically for large files — just wait for upload |
 | "Video processing failed" | File might be corrupted. Try converting with `ffmpeg -i input.mp4 output.mp4` |
-| "Rate limit exceeded" | Wait a few minutes and try again. Free tier has daily limits |
+| "Rate limit exceeded" | Wait a few minutes and try again, or check your billing quota |
 | YouTube not working | Only public videos work. Private/unlisted videos are blocked |
 
 ---
