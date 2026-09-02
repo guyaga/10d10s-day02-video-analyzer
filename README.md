@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="cover.jpg" alt="AI Video Analyzer — Gemini 3.1 Pro" width="100%">
+  <img src="cover.jpg" alt="AI Video Analyzer — Gemini 3.7 Flash" width="100%">
 </p>
 
 <h1 align="center">Day 2 — AI Video Analyzer</h1>
@@ -7,7 +7,7 @@
   <strong>10 Days 10 Skills</strong> · Claude Code Course by <a href="https://bestguy.ai">Guy Aga</a>
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/Service-Gemini%203.1%20Pro-E63B2E?style=flat-square" alt="Gemini 3.1 Pro">
+  <img src="https://img.shields.io/badge/Service-Gemini%203.7%20Flash-E63B2E?style=flat-square" alt="Gemini 3.7 Flash">
   <img src="https://img.shields.io/badge/Skill-ai--video--analyzer-111111?style=flat-square" alt="Skill">
   <img src="https://img.shields.io/badge/Level-Beginner-E8E4DD?style=flat-square&labelColor=111111" alt="Beginner">
 </p>
@@ -31,10 +31,11 @@ No video editing software needed. No technical knowledge required.
 - **"Analyze this podcast"** — transcribe and summarize audio recordings
 - **"What did they say at 1:23?"** — ask about specific moments
 
-### Why Gemini 3.1 Pro?
+### Why Gemini 3.7 Flash?
 
 | Feature | What It Means for You |
 |---------|----------------------|
+| **Fast & affordable** | Tested head-to-head against Gemini 3.1 Pro on real videos — equal or better analysis, 1.3–2.6× faster, ~¼ the price |
 | **Video + Audio** | Understands both what you see AND what you hear |
 | **1 million token context** | Can process videos up to 1 hour long |
 | **YouTube URLs** | Analyze any public YouTube video without downloading |
@@ -67,7 +68,7 @@ If you already did this in Day 1, skip to Step 2.
 2. Click **"Create API Key"**
 3. Copy your API key
 
-> **Pay-as-you-go pricing.** Set up a [Google Cloud billing profile](https://console.cloud.google.com/billing). Gemini 3.1 Pro costs ~$2-4 per 1M input tokens. Start with **$5-10 in credits** — that's plenty for learning.
+> **Pay-as-you-go pricing.** Set up a [Google Cloud billing profile](https://console.cloud.google.com/billing). Gemini 3.7 Flash costs $0.75 per 1M input tokens (through 2026, then $1.50). Start with **$5-10 in credits** — that's plenty for learning.
 
 ---
 
@@ -90,7 +91,7 @@ export GEMINI_API_KEY=your-api-key-here
 Open Claude Code and paste this:
 
 ```
-Install the ai-video-analyzer skill from https://github.com/guyaga/10d10s-day02-video-analyzer and set up everything I need to analyze videos with Gemini 3.1 Pro. Install the @google/genai SDK.
+Install the ai-video-analyzer skill from https://github.com/guyaga/10d10s-day02-video-analyzer and set up everything I need to analyze videos with Gemini 3.7 Flash. Install the @google/genai SDK.
 ```
 
 Claude handles everything — cloning, installing, configuring.

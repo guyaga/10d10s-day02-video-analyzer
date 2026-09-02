@@ -1,12 +1,14 @@
 ---
 name: ai-video-analyzer
-description: Analyze videos and audio using Gemini 3.1 Pro — frame-by-frame visual analysis, transcription with timestamps and emotions, scene breakdown, ad review, caption/subtitle generation, audio understanding, and content insights. Supports local files (File API), inline small files, YouTube URLs, and audio files. Use when the user wants to analyze a video, transcribe speech, understand video/audio content, extract scenes, review ads, generate captions/SRT, get ffmpeg commands, or needs to see/understand media content before processing it.
+description: Analyze videos and audio using Gemini 3.7 Flash — frame-by-frame visual analysis, transcription with timestamps and emotions, scene breakdown, ad review, caption/subtitle generation, audio understanding, and content insights. Supports local files (File API), inline small files, YouTube URLs, and audio files. Use when the user wants to analyze a video, transcribe speech, understand video/audio content, extract scenes, review ads, generate captions/SRT, get ffmpeg commands, or needs to see/understand media content before processing it.
 allowed-tools: Read, Write, Edit, Bash, Glob
 ---
 
-# AI Video Analyzer (Gemini 3.1 Pro)
+# AI Video Analyzer (Gemini 3.7 Flash)
 
 Analyze any video or audio with AI — get transcriptions, scene breakdowns, content analysis, captions, and actionable insights.
+
+> **Default model: `gemini-3.7-flash`.** In head-to-head tests (2026-09) it matched or beat Gemini 3.1 Pro on transcription and visual accuracy at 1.3–2.6× the speed, at about a quarter of the price. Fall back to `gemini-3.1-pro-preview` only when you need maximum temporal granularity (e.g. frame-accurate edit prep on dense footage).
 
 ## Setup
 
@@ -69,7 +71,7 @@ if (file.state === "FAILED") throw new Error("Video processing failed");
 
 // Step 3: Analyze
 const response = await ai.models.generateContent({
-  model: "gemini-3.1-pro-preview",
+  model: "gemini-3.7-flash",
   contents: createUserContent([
     createPartFromUri(file.uri, file.mimeType),
     "Analyze this video in detail: scene-by-scene breakdown with timestamps, full transcription, and summary.",
@@ -85,7 +87,7 @@ await ai.files.delete({ name: file.name });
 
 ```javascript
 const response = await ai.models.generateContent({
-  model: "gemini-3.1-pro-preview",
+  model: "gemini-3.7-flash",
   contents: [
     { fileData: { fileUri: "https://www.youtube.com/watch?v=VIDEO_ID" } },
     { text: "Analyze this video: scene breakdown, transcription, and key insights." },
@@ -104,7 +106,7 @@ import * as fs from "node:fs";
 const base64Video = fs.readFileSync("short-clip.mp4", { encoding: "base64" });
 
 const response = await ai.models.generateContent({
-  model: "gemini-3.1-pro-preview",
+  model: "gemini-3.7-flash",
   contents: [
     { inlineData: { mimeType: "video/mp4", data: base64Video } },
     { text: "What happens in this video? Describe each scene with timestamps." },
@@ -129,7 +131,7 @@ while (file.state === "PROCESSING") {
 }
 
 const response = await ai.models.generateContent({
-  model: "gemini-3.1-pro-preview",
+  model: "gemini-3.7-flash",
   contents: createUserContent([
     createPartFromUri(file.uri, file.mimeType),
     "Transcribe this audio with timestamps. Detect language and speaker emotions.",
@@ -145,7 +147,7 @@ await ai.files.delete({ name: file.name });
 const base64Audio = fs.readFileSync("clip.mp3", { encoding: "base64" });
 
 const response = await ai.models.generateContent({
-  model: "gemini-3.1-pro-preview",
+  model: "gemini-3.7-flash",
   contents: [
     { inlineData: { mimeType: "audio/mp3", data: base64Audio } },
     { text: "Transcribe and summarize this audio." },
@@ -199,7 +201,7 @@ Always use `MM:SS` format:
 Force JSON response for programmatic use:
 ```javascript
 const response = await ai.models.generateContent({
-  model: "gemini-3.1-pro-preview",
+  model: "gemini-3.7-flash",
   contents: [...],
   config: {
     responseMimeType: "application/json",
@@ -332,8 +334,9 @@ Process this audio and generate a detailed transcription:
 
 **Save tokens on long videos:**
 ```javascript
-config: { mediaResolution: 'low' }
+config: { mediaResolution: 'MEDIA_RESOLUTION_LOW' }
 ```
+> The API enum is `MEDIA_RESOLUTION_LOW` / `MEDIA_RESOLUTION_MEDIUM` / `MEDIA_RESOLUTION_HIGH` — passing `'low'` returns HTTP 400 `Invalid value at generation_config.media_resolution`.
 
 ---
 
